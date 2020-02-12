@@ -98,6 +98,20 @@ def main():
                     an[fenge(s)[1]]=hantoshuzi(fenge(s)[3])
                 else:
                     print('("%s",未能判断该数字!)' %fenge(s)[3])
+            elif fenge(s)[0]=='看看':
+                if len(fenge(s))==2:
+                    s1=fenge(s)[1]
+                    if s1[0]=='“' and s1[len(s1)-1]=='”':
+                        print(s1.strip('“”'))
+                    elif an.__contains__(fenge(s)[1])==True:  #看看 （变量名）
+                        if an[fenge(s)[1]]>=0:
+                            print(shuzitohan(an[fenge(s)[1]]))
+                        else:
+                            print('负%s' %shuzitohan(an[fenge(s)[1]]))
+                    elif an.__contains__(fenge(s)[1])==False:
+                        print('(没有%s！)' %fenge(s)[1])
+                else:
+                    print("语法错误")
             elif fenge(s)[1] in pduan:             #例：（变量名） 增加 （数字）
                 if an.__contains__(fenge(s)[0])==True:
                     ss=fenge(s)[1]
@@ -109,17 +123,6 @@ def main():
                     an[fenge(s)[0]]=yunsuan(ss,x,y)
                 else:
                     print('(没有%s！)' %fenge(s)[0])
-            elif fenge(s)[0]=='看看':
-                s1=fenge(s)[1]
-                if s1[0]=='“' and s1[len(s1)-1]=='”':
-                    print(s1.strip('“”'))
-                elif an.__contains__(fenge(s)[1])==True:  #看看 （变量名）
-                    if an[fenge(s)[1]]>=0:
-                        print(shuzitohan(an[fenge(s)[1]]))
-                    else:
-                        print('负%s' %shuzitohan(an[fenge(s)[1]]))
-                elif an.__contains__(fenge(s)[1])==False:
-                        print('(没有%s！)' %fenge(s)[1])
             elif fenge(s)[0]=='如果':   #如果 （判断语句） 则 （操作语句1） 否则 （操作语句2）
                 ts=re.match('如果 (.*?) 则 (.*?) 否则 (.*)',s,re.S)
                 m=ts.group(1)    #（判断语句）
